@@ -26,7 +26,7 @@ export function HomeHero() {
               Browse products
             </Link>
             <Link
-              href="/login"
+              href="/signin"
               className="inline-flex h-11 items-center justify-center rounded-md border border-border px-5 text-sm font-semibold text-foreground transition-colors hover:bg-background"
             >
               Sign in
