@@ -1,28 +1,28 @@
+import Image from "next/image";
+
 import type { Product } from "@/src/features/products/types/product";
 
 type ProductCardProps = {
   product: Product;
-  index: number;
 };
 
-const gradients = [
-  "linear-gradient(135deg, #0f766e, #f59e0b)",
-  "linear-gradient(135deg, #111827, #94a3b8)",
-  "linear-gradient(135deg, #f8fafc, #0f766e)",
-];
+const defaultProductImage = "/product-placeholder.svg";
 
-export function ProductCard({ product, index }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="rounded-lg border border-border bg-surface p-4">
-      <div className="relative grid aspect-[4/5] place-items-center rounded-md bg-background p-5">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-background">
         {product.isNew ? (
-          <span className="absolute left-3 top-3 rounded-md bg-surface px-2 py-1 text-xs font-semibold text-primary">
+          <span className="absolute left-3 top-3 z-10 rounded-md bg-surface px-2 py-1 text-xs font-semibold text-primary">
             New
           </span>
         ) : null}
-        <div
-          className="h-4/5 w-3/5 rounded-t-full"
-          style={{ background: gradients[index % gradients.length] }}
+        <Image
+          src={product.imageUrl ?? defaultProductImage}
+          alt={product.name}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover"
         />
       </div>
 
