@@ -9,7 +9,11 @@ import {
   type SigninFormValues,
 } from "@/src/features/auth/schemas/signin-schema";
 
-export function SigninForm() {
+type SigninFormProps = {
+  onSwitchToSignup?: () => void;
+};
+
+export function SigninForm({ onSwitchToSignup }: SigninFormProps) {
   const {
     register: bindField,
     handleSubmit,
@@ -83,9 +87,22 @@ export function SigninForm() {
 
       <p className="text-center text-sm leading-6 text-muted">
         New to NovaShop?{" "}
-        <Link href="/signup" className="font-medium text-primary hover:underline">
-          Create account
-        </Link>
+        {onSwitchToSignup ? (
+          <button
+            type="button"
+            onClick={onSwitchToSignup}
+            className="font-medium text-primary hover:underline"
+          >
+            Create account
+          </button>
+        ) : (
+          <Link
+            href="/signup"
+            className="font-medium text-primary hover:underline"
+          >
+            Create account
+          </Link>
+        )}
       </p>
     </form>
   );

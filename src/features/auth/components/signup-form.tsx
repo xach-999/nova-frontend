@@ -9,7 +9,11 @@ import {
   type SignupFormValues,
 } from "@/src/features/auth/schemas/signup-schema";
 
-export function SignupForm() {
+type SignupFormProps = {
+  onSwitchToSignin?: () => void;
+};
+
+export function SignupForm({ onSwitchToSignin }: SignupFormProps) {
   const {
     register: bindField,
     handleSubmit,
@@ -129,12 +133,22 @@ export function SignupForm() {
 
       <p className="text-center text-sm leading-6 text-muted">
         Already have an account?{" "}
-        <Link
-          href="/signin"
-          className="font-medium text-primary hover:underline"
-        >
-          Sign in
-        </Link>
+        {onSwitchToSignin ? (
+          <button
+            type="button"
+            onClick={onSwitchToSignin}
+            className="font-medium text-primary hover:underline"
+          >
+            Sign in
+          </button>
+        ) : (
+          <Link
+            href="/signin"
+            className="font-medium text-primary hover:underline"
+          >
+            Sign in
+          </Link>
+        )}
       </p>
     </form>
   );

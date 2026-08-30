@@ -1,24 +1,25 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const products = [
   {
-    name: "Minimal Linen Jacket",
-    category: "Outerwear",
-    price: "$148",
+    name: "Classic White T-Shirt",
+    category: "Hoodies",
+    price: "$29.99",
   },
   {
-    name: "Structured Cotton Shirt",
-    category: "Shirts",
-    price: "$86",
+    name: "Classic Cotton Hoodie",
+    category: "Hoodies",
+    price: "$59.99",
   },
   {
     name: "Everyday Canvas Tote",
-    category: "Bags",
+    category: "Accessories",
     price: "$64",
   },
   {
     name: "Soft Knit Sweater",
-    category: "Knitwear",
+    category: "Layers",
     price: "$118",
   },
 ];
@@ -45,20 +46,18 @@ export function FeaturedProducts() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((product, index) => (
+          {products.map((product) => (
             <article
               key={product.name}
               className="rounded-lg border border-border bg-surface p-4"
             >
-              <div className="grid aspect-[4/5] place-items-center rounded-md bg-background p-5">
-                <div
-                  className="h-4/5 w-3/5 rounded-t-full"
-                  style={{
-                    background:
-                      index % 2 === 0
-                        ? "linear-gradient(135deg, #0f766e, #f59e0b)"
-                        : "linear-gradient(135deg, #111827, #94a3b8)",
-                  }}
+              <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-background">
+                <Image
+                  src="/product-placeholder.svg"
+                  alt={product.name}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
                 />
               </div>
               <div className="mt-4 flex items-start justify-between gap-4">

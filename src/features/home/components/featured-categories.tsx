@@ -2,30 +2,34 @@ import Link from "next/link";
 
 const categories = [
   {
-    name: "Outerwear",
-    description: "Light layers, jackets, and refined daily coats.",
-    href: "/categories",
+    name: "Hoodies",
+    description: "Soft layers for daily rotation.",
+    href: "/products?category=hoodies",
+    accent: "bg-primary",
   },
   {
-    name: "Shirts",
-    description: "Clean cotton, linen, and structured essentials.",
-    href: "/categories",
+    name: "T-Shirts",
+    description: "Clean cotton basics and easy fits.",
+    href: "/products?category=t-shirts",
+    accent: "bg-amber-500",
   },
   {
-    name: "Bags",
-    description: "Everyday totes and compact carry pieces.",
-    href: "/categories",
+    name: "Pants",
+    description: "Relaxed shapes for work and weekends.",
+    href: "/products?category=pants",
+    accent: "bg-slate-700",
   },
   {
     name: "Accessories",
     description: "Finishing details for a minimal wardrobe.",
-    href: "/categories",
+    href: "/products?category=accessories",
+    accent: "bg-rose-500",
   },
 ];
 
 export function FeaturedCategories() {
   return (
-    <section className="border-t border-border bg-background">
+    <section className="bg-background">
       <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
         <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -37,10 +41,10 @@ export function FeaturedCategories() {
             </h2>
           </div>
           <Link
-            href="/categories"
+            href="/products"
             className="text-sm font-semibold text-primary hover:underline"
           >
-            View all categories
+            View all products
           </Link>
         </div>
 
@@ -51,7 +55,11 @@ export function FeaturedCategories() {
               href={category.href}
               className="rounded-lg border border-border bg-surface p-5 transition-colors hover:bg-background"
             >
-              <div className="mb-5 h-24 rounded-md bg-[linear-gradient(135deg,#f8fafc,#e2e8f0)]" />
+              <div className="mb-5 flex h-24 items-end rounded-md bg-background p-3">
+                <span
+                  className={`block h-14 w-14 rounded-md ${category.accent}`}
+                />
+              </div>
               <h3 className="text-base font-semibold text-foreground">
                 {category.name}
               </h3>
