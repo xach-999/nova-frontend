@@ -4,9 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 
 import { fetchProducts } from "@/src/features/products/api/products";
 
-export function useProducts({ page, limit }: { page: string; limit: string }) {
+type UseProductsParams = {
+  page: string;
+  limit: string;
+  category?: string;
+  gender?: string;
+  sale?: string;
+  sort?: string;
+};
+
+export function useProducts(params: UseProductsParams) {
   return useQuery({
-    queryKey: ["products", page, limit],
-    queryFn: () => fetchProducts({ page, limit }),
+    queryKey: ["products", params],
+    queryFn: () => fetchProducts(params),
   });
 }

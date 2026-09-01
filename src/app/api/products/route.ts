@@ -12,6 +12,14 @@ export async function GET(request: Request) {
     requestUrl.searchParams.get("limit") ?? "10",
   );
 
+  for (const key of ["category", "gender", "sale", "sort"]) {
+    const value = requestUrl.searchParams.get(key);
+
+    if (value) {
+      backendUrl.searchParams.set(key, value);
+    }
+  }
+
   try {
     const response = await fetch(backendUrl, { cache: "no-store" });
     const data = await response.json();

@@ -17,9 +17,17 @@ export function ProductsCatalog() {
   const searchParams = useSearchParams();
   const page = getSearchParam(searchParams, "page", "1");
   const limit = getSearchParam(searchParams, "limit", "10");
+  const category = searchParams.get("category") ?? undefined;
+  const gender = searchParams.get("gender") ?? undefined;
+  const sale = searchParams.get("sale") ?? undefined;
+  const sort = searchParams.get("sort") ?? undefined;
   const { data, isPending, isFetching, isError, error } = useProducts({
     page,
     limit,
+    category,
+    gender,
+    sale,
+    sort,
   });
 
   const products = data?.products ?? [];

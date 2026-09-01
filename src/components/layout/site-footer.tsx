@@ -7,9 +7,11 @@ const footerSections = [
   {
     title: "Shop",
     links: [
-      { href: "/products", label: "New arrivals" },
-      { href: "/categories", label: "Categories" },
-      { href: "/products", label: "Best sellers" },
+      { href: "/products?sort=newest", label: "New arrivals" },
+      { href: "/products?gender=MEN", label: "Men" },
+      { href: "/products?gender=WOMEN", label: "Women" },
+      { href: "/products?gender=UNISEX", label: "Unisex" },
+      { href: "/products?sale=true", label: "Sale" },
     ],
   },
   {

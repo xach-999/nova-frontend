@@ -3,7 +3,9 @@ import type { Product } from "@/src/features/products/types/product";
 type ApiProduct = {
   id: string;
   name: string;
+  slug?: string;
   basePrice: string;
+  compareAtPrice?: string | null;
   isFeatured: boolean;
   category?: {
     name: string;
@@ -45,9 +47,13 @@ function toProduct(product: ApiProduct): Product {
 
   return {
     id: product.id,
+    slug: product.slug,
     name: product.name,
     category: product.category?.name ?? "Uncategorized",
     price: Number(product.basePrice),
+    compareAtPrice: product.compareAtPrice
+      ? Number(product.compareAtPrice)
+      : undefined,
     colors: colors.length > 0 ? colors : ["Default"],
     imageUrl: product.images?.[0]?.url ?? product.images?.[0]?.imageUrl ?? undefined,
     isNew: product.isFeatured,
@@ -57,13 +63,37 @@ function toProduct(product: ApiProduct): Product {
 export async function fetchProducts({
   page,
   limit,
+  category,
+  gender,
+  sale,
+  sort,
 }: {
   page: string;
   limit: string;
+  category?: string;
+  gender?: string;
+  sale?: string;
+  sort?: string;
 }): Promise<ProductListResult> {
   const url = new URL("/api/products", window.location.origin);
   url.searchParams.set("page", page);
   url.searchParams.set("limit", limit);
+
+  if (category) {
+    url.searchParams.set("category", category);
+  }
+
+  if (gender) {
+    url.searchParams.set("gender", gender);
+  }
+
+  if (sale) {
+    url.searchParams.set("sale", sale);
+  }
+
+  if (sort) {
+    url.searchParams.set("sort", sort);
+  }
 
   const response = await fetch(url);
 
